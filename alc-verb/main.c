@@ -68,6 +68,10 @@ static unsigned execute_command(int dev, uint16_t nid, uint16_t verb, uint16_t p
 	input[0]	= nid;
 	input[1]	= verb;
 	input[2]	= param;
+	if (!(input[1] & 0xFF))
+	{
+		input[1] &= param >> 8;
+	}
 	
 	uint64_t output;
 	uint32_t outputCount = 1;
